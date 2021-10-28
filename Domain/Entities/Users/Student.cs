@@ -20,6 +20,7 @@ namespace ClassJournals.Domain.Entities
         public int CurrentGradeId { get; set; }
         public Grade Grades { get; set; }
 
+        public StudentSchedule StudentSchedule { get; set; }
         public IList<StudentLectures> StudentLectures { get; set; }
     }
 }

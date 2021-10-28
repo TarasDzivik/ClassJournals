@@ -17,6 +17,8 @@ namespace ClassJournals.Domain.Entities
 
 
         public IList<StudentLectures> StudentLectures { get; set; }
-        public Course Course  { get; set; }
+        public virtual Course Course  { get; set; } // вичитав у книзі C# 9 and .NET 5 Mark J.Price
+                                                    // що якщо позначити рілейшини як virtual то це доповнить
+                                                    // додати Lazy loading та інші фічі... А воно взагалі потрібно?
     }
 }

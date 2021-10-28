@@ -15,6 +15,7 @@ namespace ClassJournals.Domain.Entities.CoursesAndGrades
         public double Hours { get; set; }
 
         public ICollection<Lecture>  Lectures { get; set; }
+        public ICollection<Grade> Grades { get; set; }
 
     }
 }

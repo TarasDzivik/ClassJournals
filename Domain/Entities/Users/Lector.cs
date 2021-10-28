@@ -12,10 +12,16 @@ namespace ClassJournals.Domain.Entities
     {
         // настройки ключів
         public int CurrentLectureId { get; set; }
-        public Lecture Lecture { get; set; }
 
-        public Grade Grade { get; set; }
-        public Course Course { get; set; }
+        // Теоретично Викладач має мати в доступі всі нижче перечислені таблички в доступі many-to-many
+        // треба уточнити чи в інтернетах чи можна в одному класі об'єднати більше ніж 2 таблички (юзаю EF 3.1 )?
+        public ICollection<Student> Students { get; set; }
+        public ICollection<Lecture> Lectures { get; set; }
+        public ICollection<Grade> Grades { get; set; }
+        public ICollection<Course> Courses { get; set; }
+
+
+
 
     }
 }
