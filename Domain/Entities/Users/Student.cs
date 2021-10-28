@@ -1,4 +1,6 @@
 ﻿using ClassJournals.Domain.Entities.CoursesAndGrades;
+using ClassJournals.Domain.Entities.JoiningEntities;
+using ClassJournals.Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,15 @@ namespace ClassJournals.Domain.Entities
 {
     public class Student : UserBase
     {
+        public string Grade { get; set; }
+        public string Course { get; set; }
 
-        public string password { get; set; }
-        public string repeatPassword { get; set; }
-
-        private DateTime dateOfBirthday { get; set; }
+        public bool Payed { get; set; }
+        public int Rating { get; set; }
 
         public int CurrentGradeId { get; set; }
         public Grade Grades { get; set; }
+
+        public IList<StudentLectures> StudentLectures { get; set; }
     }
 }

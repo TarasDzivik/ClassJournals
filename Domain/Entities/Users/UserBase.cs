@@ -1,12 +1,12 @@
 ﻿using System;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ClassJournals.Domain.Entities
+namespace ClassJournals.Domain.Entities.Users
 {
-    public abstract class UserBase : IdentityDbContext<IdentityUser> // Як добавити ідентифікацію з допомогою Identity сервісів
-                                                                     // чи окремо прописувати змінні для логіна пароля і т.д.?
+    public class UserBase // чи наслiдуватись тут вiд якогось identity чи використовувати прямо тут поля пароля і емейл?
     {
         protected UserBase() => DateAdded = DateTime.UtcNow;
         public DateTime DateAdded { get; set; }
@@ -14,11 +14,10 @@ namespace ClassJournals.Domain.Entities
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LustName { get; set; }
-        public string Status { get; set; }
-        public string Grade { get; set; }
-        public string Course { get; set; }
-        public string Email { get; set; }
-        public int Rating { get; set; }
+        public DateTime DateOfBirthday { get; set; }
 
+        public string Email { get; set; }
+        public string Pass { get; set; }
+        public string RepeatPass { get; set; }
     }
 }
