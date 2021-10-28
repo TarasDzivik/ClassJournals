@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ClassJournals.Domain.Entities
 {
-    public class Schedule
+    public class StudentSchedule
     {
+        public int ScheduleId { get; set; }
         
+        public ICollection<Student> Students { get; set; }
+
     }
 }
