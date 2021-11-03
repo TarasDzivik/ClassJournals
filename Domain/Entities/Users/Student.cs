@@ -11,6 +11,8 @@ namespace ClassJournals.Domain.Entities
 {
     public class Student : UserBase
     {
+        public int StudentId { get; set; }
+
         public string Grade { get; set; }
         public string Course { get; set; }
 
@@ -20,7 +22,7 @@ namespace ClassJournals.Domain.Entities
         public int CurrentGradeId { get; set; }
         public Grade Grades { get; set; }
 
-        public StudentSchedule StudentSchedule { get; set; }
+        public StudentsSchedule StudentSchedule { get; set; }
         public IList<StudentLectures> StudentLectures { get; set; }
     }
 }

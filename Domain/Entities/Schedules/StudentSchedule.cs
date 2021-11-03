@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ClassJournals.Domain.Entities
 {
-    public class StudentSchedule
+    public class StudentsSchedule
     {
         public int ScheduleId { get; set; }
-        
-        public ICollection<Student> Students { get; set; }
+
+        public ICollection<Lector> Lectors { get; set; }
 
     }
 }

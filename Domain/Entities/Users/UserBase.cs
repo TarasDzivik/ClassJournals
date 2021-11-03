@@ -11,7 +11,6 @@ namespace ClassJournals.Domain.Entities.Users
         protected UserBase() => DateAdded = DateTime.UtcNow;
         public DateTime DateAdded { get; set; }
 
-        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LustName { get; set; }
         public DateTime DateOfBirthday { get; set; }

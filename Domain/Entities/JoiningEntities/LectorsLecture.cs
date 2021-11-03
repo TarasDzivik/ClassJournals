@@ -1,9 +1,9 @@
 ﻿namespace ClassJournals.Domain.Entities.JoiningEntities
 {
-    public class StudentLectures
+    public class LectorsLecture
     {
-        public int StudentId { get; set; }
-        public Student Student { get; set; }
+        public int LectorId { get; set; }
+        public Lector Lector { get; set; }
 
         public int LectureId { get; set; }
         public Lecture Lecture { get; set; }
