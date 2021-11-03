@@ -19,7 +19,7 @@ namespace ClassJournals.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            // Для прикладу виведемо на сторінку адмінки список всіх послуг які в нас є на сайті
+            // Для прикладу виведемо на сторінку адмінки меню з можливістю додати/видалити.редагувати, роззклад, юзера, предмет, курс (вверху сайту)
             return View(dataManager.ServiceItems.GetServiceItems());
         }
     }
