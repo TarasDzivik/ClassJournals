@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using ClassJournals.Domain.Entities;
 using ClassJournals.Domain.Repositories.Abstract;
 
@@ -10,24 +7,39 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
 {
     public class EFStudentRepository : IStudentRepository
     {
-        public void DeleteStudentItem(Guid id)
+        private readonly AppDbContext context;
+        public EFStudentRepository(AppDbContext context)
         {
-            throw new NotImplementedException();
-        }
-
-        public Student GetStudentItemById(Guid id)
-        {
-            throw new NotImplementedException();
+            this.context = context;
         }
 
         public IQueryable<Student> GetStudentItems()
         {
-            throw new NotImplementedException();
+            return context.Student;
+        }
+
+        public Student GetStudentItemById(int id)
+        {
+            return context.Student.FirstOrDefault(s => s.StudentId == id);
         }
 
         public void SaveStudentItem(Student entity)
         {
-            throw new NotImplementedException();
+            if (entity.StudentId == default)
+            {
+                context.Entry(entity).State = EntityState.Added;
+            }
+            else
+            {
+                context.Entry(entity).State = EntityState.Modified;
+            }
+            context.SaveChanges();
+        }
+
+        public void DeleteStudentItem(int id)
+        {
+            context.Student.Remove(new Student() { StudentId = id });
+            context.SaveChanges();
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassJournals.Domain.Entities;
-using ClassJournals.Domain.Repositories.Abstract;
+﻿using ClassJournals.Domain.Repositories.Abstract;
 
 namespace ClassJournals.Domain
 {
@@ -18,19 +12,21 @@ namespace ClassJournals.Domain
         public IStudentRepository Student { get; set; }
         public ILectorRepository Lector { get; set; }
         public ILectureRepository Lecture { get; set; }
-        public IScheduleRepository Schedule { get; set; }
+        public ILectorsScheduleRepository LectorsSchedule { get; set; }
+        public IStudentScheduleRepository StudentSchedule { get; set; }
 
         public DataManager(
             IStudentRepository studentRepository,
             ILectorRepository lectorRepository,
             ILectureRepository lectureRepository,
-            IScheduleRepository scheduleRepository)
+            ILectorsScheduleRepository lectorsScheduleRepository,
+            IStudentScheduleRepository studentScheduleRepository)
         {
             Student = studentRepository;
             Lector = lectorRepository;
             Lecture = lectureRepository;
-            Schedule = scheduleRepository;
+            LectorsSchedule = lectorsScheduleRepository;
+            StudentSchedule = studentScheduleRepository;
         }
     }
-
 }

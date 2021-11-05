@@ -1,33 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using ClassJournals.Domain.Entities;
 using ClassJournals.Domain.Repositories.Abstract;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClassJournals.Domain.Repositories.EntityFramework
 {
     public class EFLectureRepository : ILectureRepository
     {
-        public void DeleteLectureItem(Guid id)
+        private readonly AppDbContext context;
+        public EFLectureRepository(AppDbContext context)
         {
-            throw new NotImplementedException();
-        }
-
-        public Lecture GetLectureItemById(Guid id)
-        {
-            throw new NotImplementedException();
+            this.context = context;
         }
 
         public IQueryable<Lecture> GetLectureItems()
         {
-            throw new NotImplementedException();
+            return context.Lecture;
+        }
+
+        public Lecture GetLectureItemById(int id)
+        {
+            return context.Lecture.FirstOrDefault(l => l.LectureId == id);
         }
 
         public void SaveLectureItem(Lecture entity)
         {
-            throw new NotImplementedException();
+            if (entity.LectureId == default)
+            {
+                context.Entry(entity).State = EntityState.Added;
+            }
+            else
+            {
+                context.Entry(entity).State = EntityState.Modified;
+            }
+            context.SaveChanges();
+        }
+
+        public void DeleteLectureItem(int id)
+        {
+            context.Lecture.Remove(new Lecture() { LectureId = id });
+            context.SaveChanges();
         }
     }
 }

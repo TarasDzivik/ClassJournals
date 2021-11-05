@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using ClassJournals.Domain.Entities;
 
 namespace ClassJournals.Domain.Repositories.Abstract
@@ -7,8 +6,8 @@ namespace ClassJournals.Domain.Repositories.Abstract
     public interface ILectorRepository
     {
         IQueryable<Lector> GetLectorItems();
-        Lector GetLectorItemById(Guid id);
+        Lector GetLectorItemById(int id);
         void SaveLectorItem(Lector entity);
-        void DeleteLectorItem(Guid id);
+        void DeleteLectorItem(int id);
     }
 }
