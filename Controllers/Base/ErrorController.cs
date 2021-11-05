@@ -8,6 +8,9 @@ namespace ClassJournals.Controllers.Base
 {
     public class ErrorController
     {
+        // Виловлювати введення некоретктних данних при створенні користувачів
+
+
         
     }
 }
