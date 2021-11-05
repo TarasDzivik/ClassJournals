@@ -9,7 +9,7 @@ namespace ClassJournals.Domain.Entities.CoursesAndGrades
     public class Course
     {
         public int CourseId { get; set; }
-        public string Name { get; set; } // чи норм назви полів по типу Name чи в данному випадку краще - CourseName???
+        public string Name { get; set; }
         public int Scores { get; set; }
         public string Agenda { get; set; }
         public double Hours { get; set; }

@@ -9,7 +9,7 @@ namespace ClassJournals.Domain.Entities.CoursesAndGrades
     public class Grade
     {
         public int GradeId { get; set; }
-        public string GradeName { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Student> Students { get; set; } // one-to-many (один клас містить багато студентів)
         public Course Course { get; set; }
