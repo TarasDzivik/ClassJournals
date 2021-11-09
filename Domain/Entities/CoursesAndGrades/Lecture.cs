@@ -16,7 +16,8 @@ namespace ClassJournals.Domain.Entities
                                            // щоб можна було розділити теми по лекціямм (в ідеалі щоб, коли
                                            // позначав лекцію в розкладі, то воно автоматично розприділяло теми
                                            // лекцій по днях)?
-        public double TotalHours { get; set; }
+        public double Hours { get; set; }
+        public int Raiting { get; set; }
 
         public int CurrentLectorId { get; set; }
         public Lector Lectors { get; set; }

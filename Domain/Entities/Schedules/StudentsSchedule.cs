@@ -6,6 +6,6 @@ namespace ClassJournals.Domain.Entities.CoursesAndGrades
     {
         public int ScheduleId { get; set; }
 
-        public ICollection<Lector> Lectors { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
 }

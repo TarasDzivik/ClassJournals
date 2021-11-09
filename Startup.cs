@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using ClassJournals.Domain;
 using ClassJournals.Domain.Repositories.EntityFramework;
 using ClassJournals.Domain.Repositories.Abstract;
+using ClassJournals.Service;
 
 namespace ClassJournals
 {
@@ -34,7 +35,8 @@ namespace ClassJournals
             services.AddTransient<IStudentRepository, EFStudentRepository>();
             services.AddTransient<ILectorRepository, EFLectorRepository>();
             services.AddTransient<ILectureRepository, EFLectureRepository>();
-            services.AddTransient<IScheduleRepository, EFScheduleRepository>();
+            services.AddTransient<ILectorsScheduleRepository, EFLectorsScheduleRepository>();
+            services.AddTransient<IStudentScheduleRepository, EFStudentScheduleRepository>();
             services.AddTransient<DataManager>();
 
             // Підключаємо БД
@@ -88,8 +90,9 @@ namespace ClassJournals
 
             // Ексепшн для того щоб користувач не бачив список помилок в продакшині
             if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
-
+            }
             // Підключаємо підтримку статичних файлів (css, js end ect.)
             app.UseStaticFiles();
 

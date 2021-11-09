@@ -40,6 +40,7 @@
     <Folder Include="Areas\Lector\" />
     <Folder Include="Areas\Student\" />
     <Folder Include="Models\ViewComponents\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,8 +54,7 @@
     <None Include="wwwroot\js\browser.min.js" />
     <None Include="wwwroot\js\jquery.min.js" />
     <None Include="wwwroot\js\main.js" />
-    <None Include="wwwroot\js\scripts.js" />
-    <None Include="wwwroot\js\scripts.min.js" />
+    <None Include="wwwroot\js\script.js" />
     <None Include="wwwroot\js\util.js" />
     <None Include="wwwroot\sass\libs\_breakpoints.scss" />
     <None Include="wwwroot\sass\libs\_functions.scss" />
@@ -73,7 +73,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
   </ItemGroup>
 
 </Project>
