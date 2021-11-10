@@ -1,4 +1,6 @@
-﻿namespace ClassJournals.Domain.Entities.JoiningEntities
+﻿using ClassJournals.Domain.Entities.CoursesAndGroups;
+
+namespace ClassJournals.Domain.Entities.JoiningEntities
 {
     public class LectorsLecture
     {

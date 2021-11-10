@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClassJournals.Domain.Entities.CoursesAndGrades
+namespace ClassJournals.Domain.Entities.CoursesAndGroups
 {
     public class StudentsSchedule
     {

@@ -1,4 +1,4 @@
-﻿using ClassJournals.Domain.Entities.CoursesAndGrades;
+﻿using ClassJournals.Domain.Entities.CoursesAndGroups;
 
 namespace ClassJournals.Domain.Entities.JoiningEntities
 {

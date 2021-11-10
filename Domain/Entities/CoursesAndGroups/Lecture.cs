@@ -1,12 +1,7 @@
-﻿using ClassJournals.Domain.Entities.CoursesAndGrades;
-using ClassJournals.Domain.Entities.JoiningEntities;
-using System;
+﻿using ClassJournals.Domain.Entities.JoiningEntities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ClassJournals.Domain.Entities
+namespace ClassJournals.Domain.Entities.CoursesAndGroups
 {
     public class Lecture
     {

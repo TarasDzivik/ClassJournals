@@ -14,19 +14,25 @@ namespace ClassJournals.Domain
         public ILectureRepository Lecture { get; set; }
         public ILectorsScheduleRepository LectorsSchedule { get; set; }
         public IStudentScheduleRepository StudentSchedule { get; set; }
+        public ICourcesRepository Cources { get; set; }
+        public IGroupsRepository Groups { get; set; }
 
         public DataManager(
             IStudentRepository studentRepository,
             ILectorRepository lectorRepository,
             ILectureRepository lectureRepository,
             ILectorsScheduleRepository lectorsScheduleRepository,
-            IStudentScheduleRepository studentScheduleRepository)
+            IStudentScheduleRepository studentScheduleRepository,
+            ICourcesRepository courcesRepository,
+            IGroupsRepository groupsRepository)
         {
             Student = studentRepository;
             Lector = lectorRepository;
             Lecture = lectureRepository;
             LectorsSchedule = lectorsScheduleRepository;
             StudentSchedule = studentScheduleRepository;
+            Cources = courcesRepository;
+            Groups = groupsRepository;
         }
     }
 }

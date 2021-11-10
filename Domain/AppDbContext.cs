@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassJournals.Domain.Entities;
-using ClassJournals.Domain.Entities.CoursesAndGrades;
+using ClassJournals.Domain.Entities.CoursesAndGroups;
 using ClassJournals.Domain.Entities.JoiningEntities;
 
 namespace ClassJournals.Domain
@@ -21,9 +21,10 @@ namespace ClassJournals.Domain
         public DbSet<Student> Student { get; set; }
         public DbSet<Lecture> Lecture { get; set; }
         public DbSet<Lector> Lectors { get; set; }
-        public DbSet<Grade> Grades { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
-//--------------------Проміжні таблиці---------------------------------------
+        //--------------------Проміжні таблиці---------------------------------------
 
         public DbSet<StudentsSchedule> StudentsSchedule { get; set; }
         public DbSet<LectorsSchedule> LectorsSchedule { get; set; }
@@ -73,11 +74,11 @@ namespace ClassJournals.Domain
 //--------------------Клас і студенти----------------------------------------
 
             modelBuilder.Entity<Student>()
-                .HasOne<Grade>(s => s.Grades)
+                .HasOne<Group>(s => s.Grades)
                 .WithMany(g => g.Students)
                 .HasForeignKey(s => s.CurrentGradeId);
 
-            modelBuilder.Entity<Grade>()
+            modelBuilder.Entity<Group>()
                 .HasMany<Student>(g => g.Students)
                 .WithOne(s => s.Grades)
                 .HasForeignKey(s => s.CurrentGradeId)

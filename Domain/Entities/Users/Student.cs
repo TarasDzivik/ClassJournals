@@ -1,4 +1,4 @@
-﻿using ClassJournals.Domain.Entities.CoursesAndGrades;
+﻿using ClassJournals.Domain.Entities.CoursesAndGroups;
 using ClassJournals.Domain.Entities.JoiningEntities;
 using ClassJournals.Domain.Entities.Users;
 using System;
@@ -20,7 +20,7 @@ namespace ClassJournals.Domain.Entities
         public int Rating { get; set; }
 
         public int CurrentGradeId { get; set; }
-        public Grade Grades { get; set; }
+        public Group Grades { get; set; }
 
         public StudentsSchedule StudentSchedule { get; set; }
         public IList<StudentLectures> StudentLectures { get; set; }

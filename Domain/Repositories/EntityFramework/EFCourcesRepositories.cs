@@ -5,27 +5,27 @@ using System.Linq;
 
 namespace ClassJournals.Domain.Repositories.EntityFramework
 {
-    public class EFLectorsScheduleRepository : ILectorsScheduleRepository
+    public class EFCourcesRepositories : ICourcesRepository
     {
         private readonly AppDbContext context;
-        public EFLectorsScheduleRepository(AppDbContext context)
+        public EFCourcesRepositories(AppDbContext context)
         {
             this.context = context;
         }
 
-        public IQueryable<LectorsSchedule> GetScheduleItems()
+        public IQueryable<Course> GetCourseItem()
         {
-            return context.LectorsSchedule;
+            return context.Courses;
         }
 
-        public LectorsSchedule GetScheduleItemById(int id)
+        public Course GetCourseItemById(int id)
         {
-            return context.LectorsSchedule.FirstOrDefault(ls => ls.ScheduleId == id);
+            return context.Courses.FirstOrDefault(c => c.CourseId == id);
         }
-        
-        public void SaveScheduleItem(LectorsSchedule entity)
+
+        public void SaveCourseItem(Course entity)
         {
-            if (entity.ScheduleId == default)
+            if (entity.CourseId == default)
             {
                 context.Entry(entity).State = EntityState.Added;
             }
@@ -35,10 +35,9 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
             }
             context.SaveChanges();
         }
-
-        public void DeleteScheduleItem(int id)
+        public void DeleteCourceItem(int id)
         {
-            context.LectorsSchedule.Remove(new LectorsSchedule() { ScheduleId = id });
+            context.Courses.Remove(new Course() { CourseId = id});
             context.SaveChanges();
         }
     }

@@ -1,4 +1,4 @@
-﻿using ClassJournals.Domain.Entities.CoursesAndGrades;
+﻿using ClassJournals.Domain.Entities.CoursesAndGroups;
 using ClassJournals.Domain.Entities.JoiningEntities;
 using ClassJournals.Domain.Entities.Users;
 using System;
@@ -17,7 +17,7 @@ namespace ClassJournals.Domain.Entities
 
         public ICollection<Student> Students { get; set; }
         public ICollection<Lecture> Lectures { get; set; }
-        public ICollection<Grade> Grades { get; set; }
+        public ICollection<Group> Grades { get; set; }
         public ICollection<Course> Courses { get; set; }
 
         public LectorsSchedule LectorsSchedule { get; set; }

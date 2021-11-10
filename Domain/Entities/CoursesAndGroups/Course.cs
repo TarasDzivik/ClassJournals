@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClassJournals.Domain.Entities.CoursesAndGrades
+namespace ClassJournals.Domain.Entities.CoursesAndGroups
 {
     public class Course
     {
@@ -15,7 +15,7 @@ namespace ClassJournals.Domain.Entities.CoursesAndGrades
         public double TotalHours { get; set; }
         
         public ICollection<Lecture>  Lectures { get; set; }
-        public ICollection<Grade> Grades { get; set; }
+        public ICollection<Group> Grades { get; set; }
         public ICollection<Student> Students { get; set; }
 
     }

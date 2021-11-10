@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -37,6 +33,8 @@ namespace ClassJournals
             services.AddTransient<ILectureRepository, EFLectureRepository>();
             services.AddTransient<ILectorsScheduleRepository, EFLectorsScheduleRepository>();
             services.AddTransient<IStudentScheduleRepository, EFStudentScheduleRepository>();
+            services.AddTransient<ICourcesRepository, EFCourcesRepositories>();
+            services.AddTransient<IGroupsRepository, EFGroupeRepository>();
             services.AddTransient<DataManager>();
 
             // Підключаємо БД
