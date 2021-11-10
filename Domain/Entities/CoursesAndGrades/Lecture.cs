@@ -25,10 +25,8 @@ namespace ClassJournals.Domain.Entities
 
         public IList<LectorsLecture> LectorsLecture { get; set; }
         public IList<StudentLectures> StudentLectures { get; set; }
+        public IList<CoursesLectures> CoursesLectures { get; set; }
+        public ICollection<Course> Courses { get; set; } // Course може мати багато Lectures так і навпаки (many-to-many)
 
-        public virtual Course Course  { get; set; } // вичитав у книзі C# 9 and .NET 5 Mark J.Price
-
-        // що якщо позначити рілейшини як virtual то це доповнить
-        // додати Lazy loading та інші фічі... А воно взагалі потрібно?
     }
 }
