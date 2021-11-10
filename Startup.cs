@@ -45,9 +45,9 @@ namespace ClassJournals
             // Настроюємо Identity систему
             services.AddIdentity<IdentityUser, IdentityRole>(opts =>
             {
-                opts.User.RequireUniqueEmail = true;
+                opts.User.RequireUniqueEmail = true; // Підтвердження емейлу через лист (має прийти на пошту)
                 opts.Password.RequiredLength = 6;
-                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireNonAlphanumeric = false; // поки що не добавляю вимоги що до пароля...
                 opts.Password.RequireUppercase = false;
                 opts.Password.RequireLowercase = false;
                 opts.Password.RequireDigit = false;
