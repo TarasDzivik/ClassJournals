@@ -9,5 +9,6 @@
         public static string DeveloperPhone { get; set; }
         public static string DeveloperPhoneShort { get; set; }
         public static string DeveloperEmail { get; set; }
+        public static string MainTitle { get; set; }
     }
 }
