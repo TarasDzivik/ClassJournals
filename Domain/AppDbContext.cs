@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ClassJournals.Domain.Entities;
 using ClassJournals.Domain.Entities.CoursesAndGroups;
 using ClassJournals.Domain.Entities.JoiningEntities;
+using ClassJournals.Domain.ContextConfigurationsParts;
 
 namespace ClassJournals.Domain
 {
@@ -42,46 +38,32 @@ namespace ClassJournals.Domain
 // ------------------Налаштування ідентифікації Адміна-----------------------
 
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                Name = "admin",
-                NormalizedName = "ADMIN"
-            });
 
-            modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
-            {
-                Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
-                UserName = "admin",
-                NormalizedUserName = "ADMIN",
-                Email = "t.dzivik@gmail.com",
-                NormalizedEmail = "T.DZIVIK@GMAIL.COM",
-                EmailConfirmed = true,
-                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "superpassword"),
-                SecurityStamp = string.Empty
-            });
-
+            modelBuilder.ApplyConfiguration(new AdminIdentityConfiguration());
             // Проміжна таблиця в якій ми зв'язуємо айді юзера з його роллю на сайті (адмін)
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
                 RoleId = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
                 UserId = "3b62472e-4f66-49fa-a20f-e7685b9565d8"
             });
-
+            // ПИТАННЯ - Не зрозумів як інтегрувати IdentityUserRole<string> в AdminIdentityConfiguration() ?
 
             // Нижче настройка зв'язків між таблицями
 
-//--------------------Клас і студенти----------------------------------------
+            //--------------------Клас і студенти----------------------------------------
+            modelBuilder.ApplyConfiguration(new StudentConfiguration());
 
-            modelBuilder.Entity<Student>()
-                .HasOne<Group>(s => s.Grades)
-                .WithMany(g => g.Students)
-                .HasForeignKey(s => s.CurrentGradeId);
+            //modelBuilder.Entity<Student>()
+            //    .HasOne<Group>(s => s.Groups)
+            //    .WithMany(g => g.Students)
+            //    .HasForeignKey(s => s.CurrentGroupId);
+            //  Я так розумію, що цей блок коду лишній,
+            //  так як я в написав подібне уже в StudentConfiguration.cs ??????????
 
             modelBuilder.Entity<Group>()
                 .HasMany<Student>(g => g.Students)
-                .WithOne(s => s.Grades)
-                .HasForeignKey(s => s.CurrentGradeId)
+                .WithOne(s => s.Groups)
+                .HasForeignKey(s => s.CurrentGroupId)
                 .OnDelete(DeleteBehavior.Cascade);
 
 

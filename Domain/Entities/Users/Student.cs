@@ -19,8 +19,8 @@ namespace ClassJournals.Domain.Entities
         public bool Payed { get; set; }
         public int Rating { get; set; }
 
-        public int CurrentGradeId { get; set; }
-        public Group Grades { get; set; }
+        public int CurrentGroupId { get; set; }
+        public Group Groups { get; set; }
 
         public StudentsSchedule StudentSchedule { get; set; }
         public IList<StudentLectures> StudentLectures { get; set; }
