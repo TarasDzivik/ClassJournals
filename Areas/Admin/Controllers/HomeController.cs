@@ -11,9 +11,9 @@ namespace ClassJournals.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        private readonly DataManager dataManager;       // Для того щоб у нас був доступ до доменної моделі
+        private readonly DataManager dataManager;
 
-        public HomeController(DataManager dataManager) // Передаємо DataManager через HomeController конструктор
+        public HomeController(DataManager dataManager)
         {
             this.dataManager = dataManager;
         }
