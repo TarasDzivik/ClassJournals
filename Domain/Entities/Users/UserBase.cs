@@ -13,6 +13,7 @@ namespace ClassJournals.Domain.Entities.Users
 
         public string FirstName { get; set; }
         public string LustName { get; set; }
+        public string FullName => $"{FirstName} {LustName}";
         public DateTime DateOfBirthday { get; set; }
 
         public string Email { get; set; }

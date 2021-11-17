@@ -8,7 +8,7 @@ namespace ClassJournals.Domain.Entities.CoursesAndGroups
         public string Name { get; set; }
         public int Scores { get; set; }
         public string Agenda { get; set; }
-        public double TotalHours { get; set; }
+        public long TotalHours { get; set; }
         
         public ICollection<Lecture>  Lectures { get; set; }
         public ICollection<Group> Grades { get; set; }
