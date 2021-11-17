@@ -5,6 +5,7 @@ using ClassJournals.Domain.Entities;
 using ClassJournals.Domain.Entities.CoursesAndGroups;
 using ClassJournals.Domain.Entities.JoiningEntities;
 using ClassJournals.Domain.ContextConfigurationsParts;
+using System.Reflection;
 
 namespace ClassJournals.Domain
 {
@@ -39,7 +40,17 @@ namespace ClassJournals.Domain
 
             base.OnModelCreating(modelBuilder);
 
+            { // SCHEMA хз що це, буду читати
+                modelBuilder.HasDefaultSchema("MyCustomSchema");
+            }
+
+            // по ідеї цей рядок повинен сам реєструвати нові типи конфігурацій (new ApplyConfiguration) при додаванні нових сутьностей в проект... Поки що ще читаю про це.
+            {
+                modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            }
+
             modelBuilder.ApplyConfiguration(new AdminIdentityConfiguration());
+
             // Проміжна таблиця в якій ми зв'язуємо айді юзера з його роллю на сайті (адмін)
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {

@@ -12,10 +12,17 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
             builder.HasKey(p => p.StudentId);
 
             builder.Property(p => p.FirstName).IsRequired()
-                .HasMaxLength(30).HasColumnName("First name");
+                .HasMaxLength(30).HasColumnType("varchar")
+                .HasColumnName("First name");
 
             builder.Property(p => p.LustName).IsRequired()
-                .HasMaxLength(30).HasColumnName("Lust name");
+                .HasMaxLength(30).HasColumnType("varchar")  // чи обов'язково прописувати
+                .HasColumnName("Lust name");                //  .HasColumnType("varchar") ???
+
+            builder.Ignore(s => s.FullName); // Рішив спробувати, створити рядок повного імені,
+                                             // але разом з тим не включати йогов основну таблицю.
+                                             // Логіка така, що FullName повинен виводитись в
+                                             // журналі цілої групи для еконмії колонок.
 
             builder.Property(p => p.Email).IsRequired();
 
