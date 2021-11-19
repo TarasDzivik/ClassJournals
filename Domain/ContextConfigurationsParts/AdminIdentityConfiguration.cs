@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ClassJournals.Domain.ContextConfigurationsParts
 {
-    public class AdminIdentityConfiguration : IdentityDbContext<IdentityUser>, IEntityTypeConfiguration<IdentityRole>
+    public class AdminIdentityConfiguration : IEntityTypeConfiguration<IdentityRole>
     {
         public void Configure(EntityTypeBuilder<IdentityRole> builder)
         {
@@ -26,6 +25,12 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
                 EmailConfirmed = true,
                 PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "superpassword"),
                 SecurityStamp = string.Empty
+            });
+
+            builder.HasData(new IdentityUserRole<string>
+            {
+                RoleId = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
+                UserId = "3b62472e-4f66-49fa-a20f-e7685b9565d8"
             });
         }
     }

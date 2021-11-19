@@ -18,14 +18,9 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
             return context.Groups;
         }
 
-        public Group GetGrouoItemById(int id)
+        public Group GetGroupItemById(int id)
         {
             return context.Groups.FirstOrDefault(g => g.GroupId == id);
-        }
-
-        public Group GetGroupItemByName(string Name)
-        {
-            return context.Groups.FirstOrDefault(g => g.Name == Name);
         }
 
         public void SaveGroupItem(Group entity)
