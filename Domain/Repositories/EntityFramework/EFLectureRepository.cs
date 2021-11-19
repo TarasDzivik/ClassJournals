@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using ClassJournals.Domain.Entities;
 using ClassJournals.Domain.Entities.CoursesAndGroups;
 using ClassJournals.Domain.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;

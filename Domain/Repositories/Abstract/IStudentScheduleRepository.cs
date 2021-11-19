@@ -5,9 +5,9 @@ namespace ClassJournals.Domain.Repositories.Abstract
 {
     public interface IStudentScheduleRepository
     {
-        IQueryable<StudentsSchedule> GetScheduleItems();
-        StudentsSchedule GetScheduleItemById(int id);
-        void SaveScheduleItem(StudentsSchedule entity);
+        IQueryable<GroupSchedule> GetScheduleItems();
+        GroupSchedule GetScheduleItemById(int id);
+        void SaveScheduleItem(GroupSchedule entity);
         void DeleteScheduleItem(int id);
     }
 }

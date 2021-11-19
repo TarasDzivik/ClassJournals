@@ -2,10 +2,12 @@
 
 namespace ClassJournals.Domain.Entities.CoursesAndGroups
 {
-    public class StudentsSchedule
+    public class GroupSchedule
     {
         public int ScheduleId { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public ICollection<Lecture> Lecture { get; set; }
+
+        public Group Groups { get; set; }
     }
 }
