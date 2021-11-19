@@ -1,11 +1,5 @@
 ﻿using ClassJournals.Domain.Entities.CoursesAndGroups;
-using ClassJournals.Domain.Entities.JoiningEntities;
 using ClassJournals.Domain.Entities.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClassJournals.Domain.Entities
 {
@@ -13,8 +7,8 @@ namespace ClassJournals.Domain.Entities
     {
         public int StudentId { get; set; }
 
-        public string Grade { get; set; }
-        public string Course { get; set; }
+        public string Grade { get; set; }   // Чи потрібно це поле робити як навігаційне?
+        public string Course { get; set; }  // Чи не викличе воно концліктів і дублювань з CurrentGroupId?
 
         public bool Payed { get; set; }
         public int Rating { get; set; }
@@ -22,7 +16,10 @@ namespace ClassJournals.Domain.Entities
         public int CurrentGroupId { get; set; }
         public Group Groups { get; set; }
 
-        public StudentsSchedule StudentSchedule { get; set; }
-        public IList<StudentLectures> StudentLectures { get; set; }
+        public GroupSchedule GroupSchedule { get; set; }
+
+        /* для уникнення циклічної залежності, студенти мають
+           пов'язуватись із розкладом (GroupSchedule) через Group,
+           Group в свою чергу прив'язана до Cource. */
     }
 }

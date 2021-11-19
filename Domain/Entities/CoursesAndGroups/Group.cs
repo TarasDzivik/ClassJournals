@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ClassJournals.Domain.Entities.JoiningEntities;
+using System.Collections.Generic;
 
 namespace ClassJournals.Domain.Entities.CoursesAndGroups
 {
@@ -8,6 +9,9 @@ namespace ClassJournals.Domain.Entities.CoursesAndGroups
         public string Name { get; set; }
 
         public ICollection<Student> Students { get; set; } // one-to-many (один клас містить багато студентів)
-        public Course Course { get; set; }
+        public Course Course { get; set; }                 // one course to many Groups
+        public GroupSchedule GroupSchedule { get; set; }   // 1 розклад = 1 група
+        
+        public IList<GroupsLectures> GroupsLectures { get; set; }
     }
 }

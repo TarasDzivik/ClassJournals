@@ -13,17 +13,17 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
             this.context = context;
         }
 
-        public IQueryable<StudentsSchedule> GetScheduleItems()
+        public IQueryable<GroupSchedule> GetScheduleItems()
         {
-            return context.StudentsSchedule;
+            return context.GroupSchedules;
         }
 
-        public StudentsSchedule GetScheduleItemById(int id)
+        public GroupSchedule GetScheduleItemById(int id)
         {
-            return context.StudentsSchedule.FirstOrDefault(sl => sl.ScheduleId == id);
+            return context.GroupSchedules.FirstOrDefault(sl => sl.ScheduleId == id);
         }
 
-        public void SaveScheduleItem(StudentsSchedule entity)
+        public void SaveScheduleItem(GroupSchedule entity)
         {
             if (entity.ScheduleId == default)
             {
@@ -38,7 +38,7 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
 
         public void DeleteScheduleItem(int id)
         {
-            context.StudentsSchedule.Remove(new StudentsSchedule() { ScheduleId = id });
+            context.GroupSchedules.Remove(new GroupSchedule() { ScheduleId = id });
             context.SaveChanges();
         }
     }
