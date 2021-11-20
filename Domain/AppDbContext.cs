@@ -24,7 +24,6 @@ namespace ClassJournals.Domain
 
         public DbSet<GroupSchedule> GroupSchedules { get; set; }
         public DbSet<LectorsSchedule> LectorsSchedule { get; set; }
-        public DbSet<CoursesLectures> CoursesLectures { get; set; }
 
 //--------------------Таблиці розкладів--------------------------------------
 

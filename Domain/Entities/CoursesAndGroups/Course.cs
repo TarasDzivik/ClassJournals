@@ -10,8 +10,6 @@ namespace ClassJournals.Domain.Entities.CoursesAndGroups
         public int Scores { get; set; }
         public long TotalHours { get; set; }
         
-        public ICollection<Lecture>  Lectures { get; set; }
         public ICollection<Group> Grades { get; set; }
-        public IList<CoursesLectures> CoursesLectures { get; set; }
     }
 }

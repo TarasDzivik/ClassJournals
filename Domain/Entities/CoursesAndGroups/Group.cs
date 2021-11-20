@@ -13,5 +13,6 @@ namespace ClassJournals.Domain.Entities.CoursesAndGroups
         public GroupSchedule GroupSchedule { get; set; }   // 1 розклад = 1 група
         
         public IList<GroupsLectures> GroupsLectures { get; set; }
+
     }
 }

@@ -28,6 +28,11 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
             builder.Property(s => s.Email).IsRequired();
             builder.Property(s => s.Pass).IsRequired();
 
+            // треба прописати можливість обрахунку рейтингу студента, чи він підлягає стипендії...
+            builder.Property(s => s.Payed).IsRequired();
+            builder.HasQueryFilter(s => EF.Property<bool>(s, "Payed") == true);
+            //var student = context.Student.ToList(); // то десь в бізнес логіку запхати
+
             // Поки що мушу почитати про using Microsoft.AspNetCore.Identity;
             // а то не тямлю які там поля для ідентифікації користувача,
             // тому рішив поки поля емейлів і т.д. не прописувати.

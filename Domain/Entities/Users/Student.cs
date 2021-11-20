@@ -8,7 +8,7 @@ namespace ClassJournals.Domain.Entities
         public int StudentId { get; set; }
 
         public string Grade { get; set; }   // Чи потрібно це поле робити як навігаційне?
-        public string Course { get; set; }  // Чи не викличе воно концліктів і дублювань з CurrentGroupId?
+        public string Course { get; set; }  // Чи не викличе воно концліктів і дублювань з CurrentGroupId?  
 
         public bool Payed { get; set; }
         public int Rating { get; set; }
