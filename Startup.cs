@@ -12,6 +12,7 @@ using ClassJournals.Domain;
 using ClassJournals.Domain.Repositories.EntityFramework;
 using ClassJournals.Domain.Repositories.Abstract;
 using ClassJournals.Service;
+using System;
 
 namespace ClassJournals
 {
@@ -22,12 +23,12 @@ namespace ClassJournals
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Додаємо конфіг з файлу appsettings.json
+            // Р”РѕРґР°С”РјРѕ РєРѕРЅС„С–Рі Р· С„Р°Р№Р»Сѓ appsettings.json
             Configuration.Bind("Project", new Config());
 
-            // Підключаємо необхідний функціонал програми в якості сервісів
-            // AddTransient Означає, що в рамках одного http запиту може бути
-            // нижче підключаємо об'єкти цих репозиторіїв (при потребі)
+            // РџС–РґРєР»СЋС‡Р°С”РјРѕ РЅРµРѕР±С…С–РґРЅРёР№ С„СѓРЅРєС†С–РѕРЅР°Р» РїСЂРѕРіСЂР°РјРё РІ СЏРєРѕСЃС‚С– СЃРµСЂРІС–СЃС–РІ
+            // AddTransient РћР·РЅР°С‡Р°С”, С‰Рѕ РІ СЂР°РјРєР°С… РѕРґРЅРѕРіРѕ http Р·Р°РїРёС‚Сѓ РјРѕР¶Рµ Р±СѓС‚Рё
+            // РЅРёР¶С‡Рµ РїС–РґРєР»СЋС‡Р°С”РјРѕ РѕР±'С”РєС‚Рё С†РёС… СЂРµРїРѕР·РёС‚РѕСЂС–С—РІ (РїСЂРё РїРѕС‚СЂРµР±С–)
             services.AddTransient<IStudentRepository, EFStudentRepository>();
             services.AddTransient<ILectorRepository, EFLectorRepository>();
             services.AddTransient<ILectureRepository, EFLectureRepository>();
@@ -37,45 +38,59 @@ namespace ClassJournals
             services.AddTransient<IGroupsRepository, EFGroupeRepository>();
             services.AddTransient<DataManager>();
 
-            // Підключаємо БД
+            // РџС–РґРєР»СЋС‡Р°С”РјРѕ Р‘Р”
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
 
-            // Настроюємо Identity систему
+            // РќР°СЃС‚СЂРѕСЋС”РјРѕ Identity СЃРёСЃС‚РµРјСѓ
             services.AddIdentity<IdentityUser, IdentityRole>(opts =>
             {
-                opts.User.RequireUniqueEmail = true; // Підтвердження емейлу через лист (має прийти на пошту)
+                // Password settings
+                opts.User.RequireUniqueEmail = true; // РџС–РґС‚РІРµСЂРґР¶РµРЅРЅСЏ РµРјРµР№Р»Сѓ С‡РµСЂРµР· Р»РёСЃС‚ (РјР°С” РїСЂРёР№С‚Рё РЅР° РїРѕС€С‚Сѓ)
                 opts.Password.RequiredLength = 6;
-                opts.Password.RequireNonAlphanumeric = false; // поки що не добавляю вимоги що до пароля...
+                opts.Password.RequireNonAlphanumeric = false; // РїРѕРєРё С‰Рѕ РЅРµ РґРѕР±Р°РІР»СЏСЋ РІРёРјРѕРіРё С‰Рѕ РґРѕ РїР°СЂРѕР»СЏ...
                 opts.Password.RequireUppercase = false;
                 opts.Password.RequireLowercase = false;
                 opts.Password.RequireDigit = false;
+
+                opts.SignIn.RequireConfirmedAccount = true;
+
+                opts.User.AllowedUserNameCharacters = 
+                "РђР°Р‘Р±Р’РІР“РіТђТ‘Р”РґР•РµР„С”Р–Р¶Р—Р·РёР†С–Р‡С—Р™Р№РљРєР›Р»РњРјРќРЅРћРѕРџРїР СЂРЎСЃРўС‚РЈСѓР¤С„РҐС…Р¦С†Р§С‡РЁС€Р©С‰СЊР®СЋРЇСЏ'" + // Р§Рё РІРёРЅРёРєРЅСѓС‚СЊ С‚СЂР°Р±Р»Рё РїСЂРё СЂРµС”СЃС‚СЂР°С†С–С— РєРѕСЂРёСЃС‚СѓРІР°С‡Р°
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";               // РїСЂРё РІРёРєРѕСЂРёСЃС‚Р°РЅРЅС– РєРёСЂРёР»РёС‡РЅРёС… СЃРёРјРІРѕР»С–РІ РІ СЏРєРѕСЃС‚С– Р»РѕРіС–РЅСѓ?
+                opts.User.RequireUniqueEmail = true;
+
+                opts.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+                opts.Lockout.MaxFailedAccessAttempts = 5;
+                opts.Lockout.AllowedForNewUsers = true;
+
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
-            // Настроюємо authentication cookie
+            // РќР°СЃС‚СЂРѕСЋС”РјРѕ authentication cookie
             services.ConfigureApplicationCookie(options =>
             {
-                options.Cookie.Name = "myCompanyAuth";              // назва куккі
-                options.Cookie.HttpOnly = true;                     // не буде доступна на стороні клієнта
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+                options.Cookie.Name = "ClassJournals";              // РЅР°Р·РІР° РєСѓРєРєС–
+                options.Cookie.HttpOnly = true;                     // РЅРµ Р±СѓРґРµ РґРѕСЃС‚СѓРїРЅР° РЅР° СЃС‚РѕСЂРѕРЅС– РєР»С–С”РЅС‚Р°
 
-                options.LoginPath = "/account/login";               // адрес контроллера для авторизації
-                options.AccessDeniedPath = "/account/accessdenied"; // для доступу до панелі адміністраора
+                options.LoginPath = "/account/login";               // Р°РґСЂРµСЃ РєРѕРЅС‚СЂРѕР»Р»РµСЂР° РґР»СЏ Р°РІС‚РѕСЂРёР·Р°С†С–С—
+                options.AccessDeniedPath = "/account/accessdenied"; // РґР»СЏ РґРѕСЃС‚СѓРїСѓ РґРѕ РїР°РЅРµР»С– Р°РґРјС–РЅС–СЃС‚СЂР°РѕСЂР°
 
                 options.SlidingExpiration = true;                   // 
             });
 
 
-            // настроюємо політику авторизації для Admin area
+            // РЅР°СЃС‚СЂРѕСЋС”РјРѕ РїРѕР»С–С‚РёРєСѓ Р°РІС‚РѕСЂРёР·Р°С†С–С— РґР»СЏ Admin area
             services.AddAuthorization(x =>
             {
                 x.AddPolicy("AdminArea", policy => { policy.RequireRole("admin"); });
             });
 
-            // Додаэмо сервіси для controllers & Views
+            // Р”РѕРґР°СЌРјРѕ СЃРµСЂРІС–СЃРё РґР»СЏ controllers & Views
             services.AddControllersWithViews(x =>
             {
                 x.Conventions.Add(new AdminAreaAuthorization("Admin", "AdminArea"));
             })
-                //добавлаем сумісність з більш ранніми версіями АСП
+                //РґРѕР±Р°РІР»Р°РµРј СЃСѓРјС–СЃРЅС–СЃС‚СЊ Р· Р±С–Р»СЊС€ СЂР°РЅРЅС–РјРё РІРµСЂСЃС–СЏРјРё РђРЎРџ
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddSessionStateTempDataProvider();
         }
@@ -83,29 +98,26 @@ namespace ClassJournals
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-            //!!! Слід звернути увагу порядок реєстрації middleware
-
-            // Ексепшн для того щоб користувач не бачив список помилок в продакшині
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            // Підключаємо підтримку статичних файлів (css, js end ect.)
+            app.UseHttpsRedirection();
+           
             app.UseStaticFiles();
 
-            app.UseRouting(); // то є маршрутизція
+            app.UseRouting();
 
-            /* Підключаємо аутентифікацію та авторизацію (Порядок авторизації та аутентифікації
-             * повинен буди після маршрутизації "UseRouting" но до реєстрації маршрутів "UseEndpoints")*/
+            /* РџС–РґРєР»СЋС‡Р°С”РјРѕ Р°СѓС‚РµРЅС‚РёС„С–РєР°С†С–СЋ С‚Р° Р°РІС‚РѕСЂРёР·Р°С†С–СЋ (РџРѕСЂСЏРґРѕРє Р°РІС‚РѕСЂРёР·Р°С†С–С— С‚Р° Р°СѓС‚РµРЅС‚РёС„С–РєР°С†С–С—
+             * РїРѕРІРёРЅРµРЅ Р±СѓРґРё РїС–СЃР»СЏ РјР°СЂС€СЂСѓС‚РёР·Р°С†С–С— "UseRouting" РЅРѕ РґРѕ СЂРµС”СЃС‚СЂР°С†С–С— РјР°СЂС€СЂСѓС‚С–РІ "UseEndpoints")*/
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
 
-            // Реєструєм маршрути (ендпоінти)
+            // Р РµС”СЃС‚СЂСѓС”Рј РјР°СЂС€СЂСѓС‚Рё (РµРЅРґРїРѕС–РЅС‚Рё)
             app.UseEndpoints(endpoints =>
             {
-                // обов'язково позначаємо що такий маршрут в маршрутизаторі мусить існувати {area:exists}
+                // РѕР±РѕРІ'СЏР·РєРѕРІРѕ РїРѕР·РЅР°С‡Р°С”РјРѕ С‰Рѕ С‚Р°РєРёР№ РјР°СЂС€СЂСѓС‚ РІ РјР°СЂС€СЂСѓС‚РёР·Р°С‚РѕСЂС– РјСѓСЃРёС‚СЊ С–СЃРЅСѓРІР°С‚Рё {area:exists}
                 endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });

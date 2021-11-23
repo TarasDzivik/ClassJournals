@@ -37,8 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Lector\" />
-    <Folder Include="Areas\Student\" />
     <Folder Include="Models\ViewComponents\" />
   </ItemGroup>
 
