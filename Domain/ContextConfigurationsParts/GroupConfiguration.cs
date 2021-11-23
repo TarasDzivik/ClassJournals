@@ -8,11 +8,25 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
     {
         public void Configure(EntityTypeBuilder<Group> builder)
         {
-            builder.Property(g => g.GroupId).IsRequired();
+            builder.HasKey(g => g.GroupId);
 
             builder.Property(g => g.Name).HasMaxLength(10)
+                .HasColumnType("varchar").HasColumnName("Група")
                 .IsRequired();
 
+            builder.HasMany(g => g.Students)
+                .WithOne(s => s.Groups)
+                .HasForeignKey(g => g.CurrentGroupId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(g => g.Course)
+                .WithMany(c => c.Group)
+                .HasForeignKey(g => g.GroupId)       // Primary Key може використовуватись як навігацыйний?
+                .OnDelete(DeleteBehavior.Cascade);   // DeleteBehavior дублюється, треба утчнити чи так норм?
+
+            builder.HasOne(g => g.GroupSchedule)
+                .WithOne(gs => gs.Group)
+                .HasForeignKey<GroupSchedule>(gs => gs.ScheduleId);
         }
     }
 }

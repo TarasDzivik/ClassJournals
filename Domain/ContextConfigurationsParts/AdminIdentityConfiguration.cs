@@ -23,8 +23,10 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
                 Email = "t.dzivik@gmail.com",
                 NormalizedEmail = "T.DZIVIK@GMAIL.COM",
                 EmailConfirmed = true,
-                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "superpassword"),
-                SecurityStamp = string.Empty
+                PasswordHash = new PasswordHasher<IdentityUser>()
+                .HashPassword(null, "superpassword"),
+                SecurityStamp = string.Empty,
+                AccessFailedCount = 3
             });
 
             builder.HasData(new IdentityUserRole<string>

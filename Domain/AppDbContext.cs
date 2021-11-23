@@ -5,6 +5,7 @@ using ClassJournals.Domain.Entities;
 using ClassJournals.Domain.Entities.CoursesAndGroups;
 using ClassJournals.Domain.Entities.JoiningEntities;
 using System.Reflection;
+using ClassJournals.Domain.Entities.Users;
 
 namespace ClassJournals.Domain
 {
@@ -13,22 +14,22 @@ namespace ClassJournals.Domain
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
 //--------------------Основні таблиці----------------------------------------
-
+ 
         public DbSet<Student> Student { get; set; }
         public DbSet<Lecture> Lecture { get; set; }
         public DbSet<Lector> Lectors { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Group> Groups { get; set; }
 
-        //--------------------Проміжні таблиці---------------------------------------
-
-        public DbSet<GroupSchedule> GroupSchedules { get; set; }
-        public DbSet<LectorsSchedule> LectorsSchedule { get; set; }
-
-//--------------------Таблиці розкладів--------------------------------------
+//--------------------Проміжні таблиці---------------------------------------
 
         public DbSet<GroupsLectures> StudentLectures { get; set; }
         public DbSet<LectorsLecture> LectorsLectures { get; set; }
+
+//--------------------Таблиці розкладів--------------------------------------
+
+        public DbSet<GroupSchedule> GroupSchedule { get; set; }
+        public DbSet<LectorsSchedule> LectorsSchedule { get; set; }
 
 
 
@@ -40,17 +41,11 @@ namespace ClassJournals.Domain
                 modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             }
 
-            modelBuilder.Entity<Group>()
-                .HasMany<Student>(g => g.Students)
-                .WithOne(s => s.Groups)
-                .HasForeignKey(s => s.CurrentGroupId)
-                .OnDelete(DeleteBehavior.Cascade);
-
 
 //--------------------Викладач і лекції----------------------------------------
 
             modelBuilder.Entity<Lecture>()
-                .HasOne<Lector>(lu => lu.Lectors)
+                .HasOne(lu => lu.Lectors)
                 .WithMany(lo => lo.Lectures)
                 .HasForeignKey(lu => lu.CurrentLectorId)
                 .OnDelete(DeleteBehavior.Cascade);
@@ -75,7 +70,7 @@ namespace ClassJournals.Domain
             modelBuilder.Entity<GroupsLectures>()
                 .HasOne<Group>(gl => gl.Group)
                 .WithMany(g => g.GroupsLectures)
-                .HasForeignKey(sl => sl.GroupId);
+                .HasForeignKey(gl => gl.GroupId);
 
             modelBuilder.Entity<GroupsLectures>()
                 .HasOne<Lecture>(sl => sl.Lecture)

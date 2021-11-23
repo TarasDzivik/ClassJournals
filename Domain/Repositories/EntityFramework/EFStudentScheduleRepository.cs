@@ -15,12 +15,12 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
 
         public IQueryable<GroupSchedule> GetScheduleItems()
         {
-            return context.GroupSchedules;
+            return context.GroupSchedule;
         }
 
         public GroupSchedule GetScheduleItemById(int id)
         {
-            return context.GroupSchedules.FirstOrDefault(sl => sl.ScheduleId == id);
+            return context.GroupSchedule.FirstOrDefault(sl => sl.ScheduleId == id);
         }
 
         public void SaveScheduleItem(GroupSchedule entity)
@@ -38,7 +38,7 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
 
         public void DeleteScheduleItem(int id)
         {
-            context.GroupSchedules.Remove(new GroupSchedule() { ScheduleId = id });
+            context.GroupSchedule.Remove(new GroupSchedule() { ScheduleId = id });
             context.SaveChanges();
         }
     }

@@ -12,8 +12,8 @@ namespace ClassJournals.Domain.Entities
         public int CurrentLectureId { get; set; }
 
         public ICollection<Lecture> Lectures { get; set; }
-
         public LectorsSchedule LectorsSchedule { get; set; }
+
         public IList<LectorsLecture> LectorsLecture { get; set; }
 
         // Lector має мати доступ до LectureId
