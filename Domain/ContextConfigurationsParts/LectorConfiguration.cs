@@ -22,6 +22,10 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
             // in a configuration call to ModelBuilder, or referenced from
             // a navigation property on a type that is included in the model.
 
+            // Я так розумію, що LectorId не може бути PrimaryKay так як десь в IdentityUser
+            // від якого наслідується UserBase уже є PrimaryKay. Тому питання таке:
+            // Як мені переназначити LectorId щоб саме він був PrimaryKay?
+
             builder.Property(s => s.FirstName).IsRequired()
                 .HasMaxLength(15).HasColumnType("varchar")
                 .HasColumnName("First name");

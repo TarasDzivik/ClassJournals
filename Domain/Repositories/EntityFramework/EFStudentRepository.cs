@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ClassJournals.Domain.Entities.Users;
 using ClassJournals.Domain.Repositories.Abstract;
+using System;
 
 namespace ClassJournals.Domain.Repositories.EntityFramework
 {
@@ -18,7 +19,7 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
             return context.Student;
         }
 
-        public Student GetStudentItemById(int id)
+        public Student GetStudentItemById(Guid id)
         {
             return context.Student.FirstOrDefault(s => s.StudentId == id); 
         }
@@ -36,7 +37,7 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-        public void DeleteStudentItem(int id)
+        public void DeleteStudentItem(Guid id)
         {
             context.Student.Remove(new Student() { StudentId = id });
             context.SaveChanges();

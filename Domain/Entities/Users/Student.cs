@@ -1,10 +1,11 @@
 ﻿using ClassJournals.Domain.Entities.CoursesAndGroups;
+using System;
 
 namespace ClassJournals.Domain.Entities.Users
 {
     public class Student : UserBase
     {
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
 
         // Чи ця властивість і та що нижче
         // (public Group Groups) не являється дублюванням?

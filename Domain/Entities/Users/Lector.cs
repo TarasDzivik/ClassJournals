@@ -2,13 +2,13 @@
 using ClassJournals.Domain.Entities.CoursesAndGroups;
 using ClassJournals.Domain.Entities.JoiningEntities;
 using System.Collections.Generic;
-
+using System;
 
 namespace ClassJournals.Domain.Entities.Users
 {
     public class Lector : UserBase
     { 
-        public int LectorId { get; set; }
+        public Guid LectorId { get; set; }
         
         // настройки ключів
         public int CurrentLectureId { get; set; }
