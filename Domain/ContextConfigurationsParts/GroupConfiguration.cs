@@ -1,4 +1,5 @@
 ﻿using ClassJournals.Domain.Entities.CoursesAndGroups;
+using ClassJournals.Domain.Entities.Schedules;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

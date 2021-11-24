@@ -1,6 +1,7 @@
 ﻿using ClassJournals.Domain.Entities.JoiningEntities;
 using System.Collections.Generic;
 using ClassJournals.Domain.Entities.Users;
+using ClassJournals.Domain.Entities.Schedules;
 
 namespace ClassJournals.Domain.Entities.CoursesAndGroups
 {

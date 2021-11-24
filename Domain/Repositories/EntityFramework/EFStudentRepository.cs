@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using ClassJournals.Domain.Entities;
+using ClassJournals.Domain.Entities.Users;
 using ClassJournals.Domain.Repositories.Abstract;
 
 namespace ClassJournals.Domain.Repositories.EntityFramework
@@ -20,7 +20,7 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
 
         public Student GetStudentItemById(int id)
         {
-            return context.Student.FirstOrDefault(s => s.StudentId == id);
+            return context.Student.FirstOrDefault(s => s.StudentId == id); 
         }
 
         public void SaveStudentItem(Student entity)

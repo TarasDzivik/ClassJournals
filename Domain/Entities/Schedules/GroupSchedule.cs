@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using ClassJournals.Domain.Entities.CoursesAndGroups;
+using System.Collections.Generic;
 
-namespace ClassJournals.Domain.Entities.CoursesAndGroups
-{
+namespace ClassJournals.Domain.Entities.Schedules
+{ 
     public class GroupSchedule
     {
         public int ScheduleId { get; set; }

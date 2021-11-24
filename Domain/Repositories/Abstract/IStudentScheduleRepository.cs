@@ -1,4 +1,4 @@
-﻿using ClassJournals.Domain.Entities.CoursesAndGroups;
+﻿using ClassJournals.Domain.Entities.Schedules;
 using System.Linq;
 
 namespace ClassJournals.Domain.Repositories.Abstract

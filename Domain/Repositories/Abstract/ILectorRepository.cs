@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using ClassJournals.Domain.Entities;
+using ClassJournals.Domain.Entities.Users;
 
 namespace ClassJournals.Domain.Repositories.Abstract
 {

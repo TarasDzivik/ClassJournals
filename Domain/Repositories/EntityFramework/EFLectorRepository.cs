@@ -1,7 +1,7 @@
 ﻿using ClassJournals.Domain.Repositories.Abstract;
-using ClassJournals.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using ClassJournals.Domain.Entities.Users;
 
 namespace ClassJournals.Domain.Repositories.EntityFramework
 {

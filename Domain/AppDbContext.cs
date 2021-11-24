@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ClassJournals.Domain.Entities;
 using ClassJournals.Domain.Entities.CoursesAndGroups;
+using ClassJournals.Domain.Entities.Schedules;
 using ClassJournals.Domain.Entities.JoiningEntities;
 using System.Reflection;
 using ClassJournals.Domain.Entities.Users;
@@ -11,10 +12,10 @@ namespace ClassJournals.Domain
 {
     public class AppDbContext : IdentityDbContext<IdentityUser>
     {
+      
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-//--------------------Основні таблиці----------------------------------------
- 
+        //--------------------Основні таблиці----------------------------------------
         public DbSet<Student> Student { get; set; }
         public DbSet<Lecture> Lecture { get; set; }
         public DbSet<Lector> Lectors { get; set; }
@@ -23,7 +24,7 @@ namespace ClassJournals.Domain
 
 //--------------------Проміжні таблиці---------------------------------------
 
-        public DbSet<GroupsLectures> StudentLectures { get; set; }
+        public DbSet<GroupsLectures> GroupsLectures { get; set; }
         public DbSet<LectorsLecture> LectorsLectures { get; set; }
 
 //--------------------Таблиці розкладів--------------------------------------
@@ -31,6 +32,10 @@ namespace ClassJournals.Domain
         public DbSet<GroupSchedule> GroupSchedule { get; set; }
         public DbSet<LectorsSchedule> LectorsSchedule { get; set; }
 
+//--------------------Таблиця Адміна-----------------------------------------
+
+        //public DbSet<IdentityRole> IdentityRole { get; set; }
+        //public DbSet<IdentityUser> IdentityUser { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,16 +45,6 @@ namespace ClassJournals.Domain
             {
                 modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             }
-
-
-//--------------------Викладач і лекції----------------------------------------
-
-            modelBuilder.Entity<Lecture>()
-                .HasOne(lu => lu.Lectors)
-                .WithMany(lo => lo.Lectures)
-                .HasForeignKey(lu => lu.CurrentLectorId)
-                .OnDelete(DeleteBehavior.Cascade);
-
 
 //--------------------Налаштування проміжних таблиць--------------------------------------
 
