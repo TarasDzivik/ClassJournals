@@ -1,5 +1,4 @@
-﻿using ClassJournals.Domain.Entities.JoiningEntities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ClassJournals.Domain.Entities.CoursesAndGroups
 {

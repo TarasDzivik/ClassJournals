@@ -19,7 +19,7 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
             return context.Lectors;
         }
 
-        public Lector GetLectorItemById(Guid id)
+        public Lector GetLectorItemById(int id)
         {
             return context.Lectors.FirstOrDefault(l => l.LectorId == id);
         }
@@ -37,7 +37,7 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-        public void DeleteLectorItem(Guid id)
+        public void DeleteLectorItem(int id)
         {
             context.Lectors.Remove(new Lector() { LectorId = id });
             context.SaveChanges();

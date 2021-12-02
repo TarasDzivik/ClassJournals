@@ -11,14 +11,13 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
         {
             builder.HasKey(gs => gs.ScheduleId);
 
-            builder.HasMany(gs => gs.Lecture)
+            builder.HasMany(gs => gs.Lectures)
                 .WithOne(l => l.GroupSchedule)
-                .HasForeignKey(gs=>gs.LectureId);
+                .HasForeignKey(gs=>gs.CurrentLectureId);
 
             builder.HasOne(gs => gs.Group)
                 .WithOne(g => g.GroupSchedule)
                 .HasForeignKey<Group>(gs => gs.GroupId);
-
         }
     }
 }

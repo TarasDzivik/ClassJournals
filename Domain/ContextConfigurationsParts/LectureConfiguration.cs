@@ -12,27 +12,27 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
 
             builder.Property(l => l.Name).HasMaxLength(40)
                 .HasColumnType("varchar").HasColumnName("Предмет")
-                .IsRequired();
+                .IsUnicode(true).IsRequired();
 
             // Треба подумати якими як саме буде обраховуватись протяжність лекції
             // також чи це навігаційна властивість чи звичайна інформаційна
-            // (поки маю сили, запишу лише як ідею на завта)
-
-            builder.Property(l => l.Hours).HasColumnName("Години");
+            
+            builder.Property(l => l.Hours).HasColumnName("Тривалысть лекцій");
 
             builder.Property(l => l.Raiting).HasColumnName("Оцінка")
-                .HasMaxLength(2).HasColumnType("INT");
-
-            // Також необхідно розібратись в своїй голові
-            // чи Lecture - це назва предмету і для обрахунку
-            // відвідуваності необхідно створювати окрему таблицю
-            // зі списком лекцій чи використовувати для цього GroupeSchedule?
+                .HasMaxLength(2).HasDefaultValue(0);
 
             builder.HasOne(lu => lu.Lectors)
-                .WithMany(lo => lo.Lectures)
-                .HasForeignKey(lu => lu.CurrentLectorId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .WithMany(lo => lo.Lecture)
+                .HasForeignKey(lu => lu.LectureId);
+            // Якось дуже заплутано получається, подивлюсь по міграції що там вийде...
+            builder.HasOne(l => l.LectorsSchedule)
+                .WithMany(gs => gs.Lectures)
+                .HasForeignKey(l => l.CurrentLectorId);
 
+            builder.HasOne(l => l.GroupSchedule)
+                .WithMany(gs => gs.Lectures)
+                .HasForeignKey(l => l.CurrentLectureId);
         }
     }
 }

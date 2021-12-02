@@ -12,9 +12,9 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
 
             builder.Property(c => c.Name).HasMaxLength(30)
                 .HasColumnType("varchar").HasColumnName("Курс")
-                .IsRequired();
+                .IsUnicode(true).IsRequired();
 
-            builder.Property(c => c.TotalHours).HasColumnName("Годин");
+            builder.Property(c => c.TotalHours).HasColumnName("Тривалість курсу");
 
             builder.HasMany(g => g.Group)
                 .WithOne(s => s.Course)

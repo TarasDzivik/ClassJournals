@@ -15,7 +15,7 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
                 .WithOne(l=>l.LectorsSchedule)
                 .HasForeignKey(ls => ls.LectureId);
 
-            builder.HasOne(gl => gl.Lector)
+            builder.HasOne(gl => gl.Lectors)
                 .WithOne(l => l.LectorsSchedule)
                 .HasForeignKey<Lector>(ls => ls.LectorId);
         }

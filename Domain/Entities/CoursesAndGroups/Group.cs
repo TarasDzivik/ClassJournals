@@ -12,11 +12,10 @@ namespace ClassJournals.Domain.Entities.CoursesAndGroups
 
         public ICollection<Student> Students { get; set; }
         public Course Course { get; set; }
-        public int CurrentCourseId { get; internal set; }  // VS сама згенерувала інтернал (треба уточнити) чи 
-                                                           // правильно налаштований доступ і чи не треба до
-                                                           // інших методів теж так само налаштувати????
+        public int CurrentCourseId { get; set; }  
 
-        public GroupSchedule GroupSchedule { get; set; }       
+        public GroupSchedule GroupSchedule { get; set; }
+        
         public IList<GroupsLectures> GroupsLectures { get; set; }
        
     }

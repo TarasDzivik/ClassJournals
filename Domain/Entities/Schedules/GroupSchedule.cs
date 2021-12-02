@@ -11,8 +11,7 @@ namespace ClassJournals.Domain.Entities.Schedules
            міститимуть в собі дату і номер лекції (1,2,3,4 і т.д.) */
 
 
-
-        public ICollection<Lecture> Lecture { get; set; }
+        public ICollection<Lecture> Lectures { get; set; }
         public Group Group { get; set; }
     }
 }

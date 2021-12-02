@@ -13,6 +13,7 @@ using ClassJournals.Domain.Repositories.EntityFramework;
 using ClassJournals.Domain.Repositories.Abstract;
 using ClassJournals.Service;
 using System;
+using ClassJournals.Domain.Entities.Users;
 
 namespace ClassJournals
 {
@@ -42,7 +43,7 @@ namespace ClassJournals
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
 
             // Настроюємо Identity систему
-            services.AddIdentity<IdentityUser, IdentityRole>(opts =>
+            services.AddIdentity<UserBase, UserRoles>(opts =>
             {
                 // Password settings
                 opts.User.RequireUniqueEmail = true; // Підтвердження емейлу через лист (має прийти на пошту)

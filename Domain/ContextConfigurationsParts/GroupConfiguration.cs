@@ -17,13 +17,12 @@ namespace ClassJournals.Domain.ContextConfigurationsParts
 
             builder.HasMany(g => g.Students)
                 .WithOne(s => s.Groups)
-                .HasForeignKey(g => g.CurrentGroupId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(g => g.Group);
 
             builder.HasOne(g => g.Course)
                 .WithMany(c => c.Group)
-                .HasForeignKey(g => g.GroupId)       // Primary Key може використовуватись як навігацыйний?
-                .OnDelete(DeleteBehavior.Cascade);   // DeleteBehavior дублюється, треба утчнити чи так норм?
+                .HasForeignKey(g => g.GroupId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(g => g.GroupSchedule)
                 .WithOne(gs => gs.Group)

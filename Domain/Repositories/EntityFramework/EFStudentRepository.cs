@@ -19,7 +19,7 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
             return context.Student;
         }
 
-        public Student GetStudentItemById(Guid id)
+        public Student GetStudentItemById(int id)
         {
             return context.Student.FirstOrDefault(s => s.StudentId == id); 
         }
@@ -37,7 +37,7 @@ namespace ClassJournals.Domain.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-        public void DeleteStudentItem(Guid id)
+        public void DeleteStudentItem(int id)
         {
             context.Student.Remove(new Student() { StudentId = id });
             context.SaveChanges();
