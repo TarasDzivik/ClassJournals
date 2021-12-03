@@ -8,9 +8,10 @@ namespace ClassJournals.Domain.Entities.Schedules
     public class LectorsSchedule
     {
         public int ScheduleId { get; set; }
+        
+        public Lector Lector { get; set; } // 1 розклад = 1 викладач
 
         public ICollection<Lecture> Lectures { get; set; }
 
-        public Lector Lectors { get; set; }
     }
 }

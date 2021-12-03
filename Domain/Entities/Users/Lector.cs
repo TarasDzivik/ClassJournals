@@ -2,21 +2,20 @@
 using ClassJournals.Domain.Entities.CoursesAndGroups;
 using ClassJournals.Domain.Entities.JoiningEntities;
 using System.Collections.Generic;
+using System;
 
 namespace ClassJournals.Domain.Entities.Users
 {
     public class Lector : UserBase
     { 
-        public int LectorId { get; set; }
+        public Guid LectorId { get; set; }
         
-        public UserRoles Role { get; set; }
-
+        // настройки ключів
         public int CurrentLectureId { get; set; }
 
-        public ICollection<Lecture> Lecture { get; set; }
+        public ICollection<Lecture> Lectures { get; set; }
         public LectorsSchedule LectorsSchedule { get; set; }
 
-        public int CurrentLectorId { get; set; }
         public IList<LectorsLecture> LectorsLecture { get; set; }
 
         // Lector має мати доступ до LectureId

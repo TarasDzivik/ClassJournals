@@ -7,8 +7,8 @@ namespace ClassJournals.Domain.Repositories.Abstract
     public interface ILectorRepository
     {
         IQueryable<Lector> GetLectorItems();
-        Lector GetLectorItemById(int id);
+        Lector GetLectorItemById(Guid id);
         void SaveLectorItem(Lector entity);
-        void DeleteLectorItem(int id);
+        void DeleteLectorItem(Guid id);
     }
 }
